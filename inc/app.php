@@ -19,9 +19,6 @@ class App {
 
         if (isset($urlParts[1])) {
             $actionName = $urlParts[1] . 'Action';
-            if (method_exists($controller, $actionName)) {
-                $controller->$actionName();
-            }
         } else {
             $actionName = 'indexAction';
         }
