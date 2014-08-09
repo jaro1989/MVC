@@ -24,6 +24,9 @@ class App {
             if (method_exists($controller, $actionName)) {
                 $controller->$actionName();
             }
+            else{
+                throw new Exception('No Action');
+            }
         }
     }
 

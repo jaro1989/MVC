@@ -4,10 +4,10 @@ class Controller
 {
     public function __construct()
     {
-        echo __CLASS__.'<br />';
+        $this->view = new View();
     }
 
     public function indexAction(){
-        echo __CLASS__.'->'.__METHOD__.'<br />';
+        $this->view = new View();
     }
 } 
