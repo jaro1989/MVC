@@ -1,8 +1,6 @@
 <?php
 
 class App {
-    
-   
 
     public function __construct() {
         $url = isset($_GET['url']) ? trim($_GET['url']) : DEFAULT_CONTROLLER;
@@ -24,9 +22,14 @@ class App {
             if (method_exists($controller, $actionName)) {
                 $controller->$actionName();
             }
-            else{
-                throw new Exception('No Action');
-            }
+        } else {
+            $actionName = 'indexAction';
+        }
+
+        if (method_exists($controller, $actionName)) {
+            $controller->$actionName();
+        } else {
+            throw new Exception('Action not found');
         }
     }
 
