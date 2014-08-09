@@ -1,17 +1,17 @@
 <?php
 
-class App
+class App {
+    
+   
 
-{
-    public function __construct()
-    {
-        $url = isset($_GET['url'])? trim($_GET['url']): DEFAULT_CONTROLLER;
+    public function __construct() {
+        $url = isset($_GET['url']) ? trim($_GET['url']) : DEFAULT_CONTROLLER;
         $urlParts = explode('/', $url);
 
-        $controllerFileName = 'inc/controllers/'.$urlParts[0].'.php';
-        $controllerName = $urlParts[0].'Controller';
+        $controllerFileName = 'inc/controllers/' . $urlParts[0] . '.php';
+        $controllerName = $urlParts[0] . 'Controller';
 
-        if(file_exists($controllerFileName)){
+        if (file_exists($controllerFileName)) {
             require_once($controllerFileName);
         } else {
             throw new Exception('Controller not found');
@@ -19,11 +19,12 @@ class App
 
         $controller = new $controllerName;
 
-        if(isset($urlParts[1])){
-            $actionName = $urlParts[1].'Action';
-            if(method_exists($controller, $actionName)){
+        if (isset($urlParts[1])) {
+            $actionName = $urlParts[1] . 'Action';
+            if (method_exists($controller, $actionName)) {
                 $controller->$actionName();
             }
         }
     }
-} 
+
+}
